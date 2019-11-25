@@ -1,3 +1,3 @@
 export const HOME = '/';
-export const USER_DETAILS = '/user/:userId';
-export const USER_POST = '/user/:userId/:postId';
+export const USER_DETAILS = (userId = ':userId') => `/user/${userId}`;
+export const POST_DETAILS = (userId = ':userId', postId= ':postId') => `/user/${userId}/${postId}`;
