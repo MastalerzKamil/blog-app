@@ -1,12 +1,10 @@
 import React from 'react';
-import Routes from './Routes'
+import AppRouter from './AppRouter'
 
-class App extends React {
-  render () {
-    return (
-      <Routes/>
-    );
-  }
+const App = () => {
+  return (
+    <AppRouter/>
+  );
 }
 
 export default App;
