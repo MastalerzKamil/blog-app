@@ -70,6 +70,7 @@ UserCard.defaultProps = {
   email: '',
   phone: '',
   website: '',
+  className: '',
 }
 
 UserCard.propTypes = {
@@ -78,7 +79,7 @@ UserCard.propTypes = {
   email: PropTypes.string,
   phone: PropTypes.string,
   website: PropTypes.string,
-  className: PropTypes.object.isRequired,
+  className: PropTypes.string,
 }
 
 export default UserCard;
