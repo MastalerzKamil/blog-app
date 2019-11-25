@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid } from '@material-ui/core';
 import { UserCard } from '../index';
+import { GetUsers } from 'hooks';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -18,19 +19,22 @@ const useStyles = makeStyles(theme => ({
 
 const UsersGrid = () => {
   const classes = useStyles();
-  const tmpCompany = {
-    name: 'moja firma',
-    catchPhrase: 'djfosdjof',
-    bs: 'dskfjsd'
-  }
+  const fetchedUsers = GetUsers();
 
   return (
     <Grid container className={classes.root} spacing={2}>
       <Grid item xs={12}>
         <Grid container justify="center" spacing={7}>
-          {[0, 1, 2].map(value => (
-            <Grid key={value} item>
-              <UserCard company={tmpCompany} className={classes.paper} />
+          {fetchedUsers.map(value => (
+            <Grid key={value.id} item>
+              <UserCard
+                className={classes.paper}
+                company={value.company}
+                name={value.name}
+                email={value.email}
+                phone={value.phone}
+                website={value.website}
+              />
             </Grid>
           ))}
         </Grid>
