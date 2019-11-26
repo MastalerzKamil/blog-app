@@ -1,13 +1,15 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import { makeStyles } from "@material-ui/core/styles";
+import { Link } from 'react-router-dom';
 import {
   Card,
   CardContent,
   CardActions,
   Typography,
   Button,
-} from '@material-ui/core'
+} from '@material-ui/core';
+import * as routes from 'constants/routes';
 
 const useStyles = makeStyles({
   card: {
@@ -33,7 +35,8 @@ const UserCard = (props) => {
     email,
     phone,
     website,
-    className
+    className,
+    userId
   } = props;
   const classes = useStyles();
 
@@ -59,7 +62,9 @@ const UserCard = (props) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Details</Button>
+        <Link to={routes.USER_DETAILS(userId)}>
+          <Button size="small">Details</Button>
+        </Link>
       </CardActions>
     </Card>
   )
@@ -71,6 +76,7 @@ UserCard.defaultProps = {
   phone: '',
   website: '',
   className: '',
+  userId: 0,
 }
 
 UserCard.propTypes = {
@@ -80,6 +86,7 @@ UserCard.propTypes = {
   phone: PropTypes.string,
   website: PropTypes.string,
   className: PropTypes.string,
+  userId: PropTypes.number,
 }
 
 export default UserCard;

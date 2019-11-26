@@ -34,6 +34,7 @@ const UsersGrid = () => {
                 email={value.email}
                 phone={value.phone}
                 website={value.website}
+                userId={value.id}
               />
             </Grid>
           ))}

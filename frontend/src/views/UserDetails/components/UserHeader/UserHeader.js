@@ -5,8 +5,11 @@ import {
   IconButton,
   Typography,
 } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
+
+import * as routes from 'constants/routes';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -23,9 +26,11 @@ const UserHeader = (props) => {
 
   return (
     <div className={classes.root}>
-      <IconButton>
-        <ArrowBackIcon />
-      </IconButton>
+      <Link to={routes.HOME}>
+        <IconButton>
+          <ArrowBackIcon />
+        </IconButton>
+      </Link>
       <Typography variant="h4" gutterBottom>
         {username}
       </Typography>

@@ -38,9 +38,9 @@ const SinglePost = (props) => {
           </Grid>
 
           <Grid item xs={12} sm container>
-            <Grid item xs container direction='column' spacing={2}>
+            <Grid item xs container direction='column' >
               <Grid item xs>
-                <Typography gutterBottom variant='subtitle1'>
+                <Typography variant='subtitle1' gutterBottom>
                   {title}
                 </Typography>
               </Grid>
