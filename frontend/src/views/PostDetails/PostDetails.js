@@ -31,11 +31,11 @@ const PostDetails = (props) => {
   const classes = useStyles();
   const { match, userDetails, postDetails, actions } = props;
   const { fetchPostDetails, fetchUserDetails } = actions;
-  const { postId } = match.params;
+  const { postId, userId } = match.params;
 
   useEffect(() => {
     fetchPostDetails(postId)
-    fetchUserDetails(postId)
+    fetchUserDetails(userId)
   },[fetchPostDetails, fetchUserDetails, postId]);
 
   if(postDetails.loading && userDetails.loading) {
@@ -44,11 +44,9 @@ const PostDetails = (props) => {
     )
   }
 
-  console.log(props);
-
   return (
     <div className={classes.root}>
-      <PostHeader username={userDetails.info.name} />
+      <PostHeader userId={userId} username={userDetails.info.name} />
       <Typography className={classes.title} variant="h3" gutterBottom>
         {postDetails.info.title}
       </Typography>

@@ -15,9 +15,9 @@ const PostsList = (props) => {
   const { posts } = props
   return (
     <div className={classes.root}>
-      {posts.map(post => {
+      {posts.map((post, index) => {
         return (
-          <SinglePost title={post.title} />
+          <SinglePost key={index} postId={post.id} userId={post.userId} title={post.title} />
         );
       })}
     </div>

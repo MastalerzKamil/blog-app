@@ -1,6 +1,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
 import {
   Grid,
   Paper,
@@ -8,7 +9,8 @@ import {
   IconButton,
 } from '@material-ui/core';
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
-import KeyboardArrowRightOutlinedIcon from '@material-ui/icons/KeyboardArrowRightOutlined'
+import KeyboardArrowRightOutlinedIcon from '@material-ui/icons/KeyboardArrowRightOutlined';
+import * as routes from 'constants/routes';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -25,7 +27,7 @@ const useStyles = makeStyles(theme => ({
 
 const SinglePost = (props) => {
   const classes = useStyles();
-  const { title } = props;
+  const { title, userId, postId } = props;
 
   return (
     <div className={classes.root}>
@@ -48,9 +50,11 @@ const SinglePost = (props) => {
             </Grid>
 
             <Grid item>
-              <IconButton>
-                <KeyboardArrowRightOutlinedIcon />
-              </IconButton>
+              <Link to={routes.POST_DETAILS(userId, postId)}>
+                <IconButton>
+                  <KeyboardArrowRightOutlinedIcon />
+                </IconButton>
+              </Link>
             </Grid>
           </Grid>
         </Grid>
@@ -60,11 +64,15 @@ const SinglePost = (props) => {
 }
 
 SinglePost.defaultProps = {
-  title: ''
+  title: '',
+  userId: 0,
+  postId: 0,
 };
 
 SinglePost.propTypes = {
   title: PropTypes.string,
+  userId: PropTypes.number,
+  postId: PropTypes.number,
 }
 
 export default SinglePost;
