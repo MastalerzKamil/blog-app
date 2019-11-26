@@ -4,33 +4,41 @@ import {
   CircularProgress
 } from '@material-ui/core';
 import { PropTypes } from 'prop-types';
+import { UserHeader } from './components';
 
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    margin: '30px',
+  },
+  loadingIcon: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   }
 }));
 
 const UserDetails = (props) => {
   const classes = useStyles();
   const { match, userDetails, userPosts, actions } = props;
+  const { fetchUserDetails, fetchUserPosts } = actions;
   const { userId } = match.params;
 
   useEffect(() => {
-    actions.fetchUserDetails(userId);
-    actions.fetchUserPosts(userId);
-  },[]);
+    fetchUserDetails(userId);
+    fetchUserPosts(userId);
+  },[fetchUserDetails, fetchUserPosts, userId]);
 
   if(userDetails.loading && userPosts.loading) {
     return (
-      <CircularProgress />
+      <CircularProgress className={classes.loadingIcon}/>
     )
   }
 
   return (
     <div className={classes.root}>
-      hello user
+      <UserHeader username={userDetails.info.name} />
     </div>
   )
 }
