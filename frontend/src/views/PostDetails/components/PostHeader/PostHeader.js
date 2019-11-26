@@ -7,8 +7,6 @@ import {
 } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
-
 import * as routes from 'constants/routes';
 
 const useStyles = makeStyles(theme => ({
@@ -20,13 +18,12 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const UserHeader = (props) => {
+const PostHeader = (props) => {
   const classes = useStyles();
-  const { username } = props;
-
+  const { username, userId } = props;
   return (
     <div className={classes.root}>
-      <Link to={routes.HOME}>
+      <Link to={routes.USER_DETAILS(userId)}>
         <IconButton>
           <ArrowBackIcon />
         </IconButton>
@@ -34,19 +31,17 @@ const UserHeader = (props) => {
       <Typography variant='h4' gutterBottom>
         {username}
       </Typography>
-      <IconButton>
-        <AddCircleIcon />
-      </IconButton>
+      <div/>
     </div>
-  );
+  )
 };
 
-UserHeader.defaultProps = {
+PostHeader.defaultProps = {
   username: '',
 }
 
-UserHeader.propTypes = {
+PostHeader.propTypes = {
   username: PropTypes.string,
 }
 
-export default UserHeader;
+export default PostHeader;

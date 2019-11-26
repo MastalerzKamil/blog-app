@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  CircularProgress
-} from '@material-ui/core';
+import { CircularProgress } from '@material-ui/core';
 import { PropTypes } from 'prop-types';
 import { UserHeader, PostsList } from './components';
 
@@ -43,8 +41,8 @@ const UserDetails = (props) => {
       <UserHeader username={userDetails.info.name} />
       <PostsList posts={userPosts.posts} />
     </div>
-  )
-}
+  );
+};
 
 UserDetails.propTypes = {
   match: PropTypes.shape({
@@ -52,6 +50,8 @@ UserDetails.propTypes = {
       userId: PropTypes.node,
     }).isRequired,
   }).isRequired,
-}
+  userDetails: PropTypes.object.isRequired,
+  userPosts: PropTypes.object.isRequired,
+};
 
 export default UserDetails;

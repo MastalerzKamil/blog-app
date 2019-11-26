@@ -11,3 +11,7 @@ export function getUserDetails(userId) {
 export function getPostsByUsersId(userId) {
   return get(`/posts?userId=${userId}`);
 }
+
+export function getPostById(postId) {
+  return get(`/posts/${postId}`);
+}
