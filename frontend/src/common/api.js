@@ -4,6 +4,6 @@ export function getUsers() {
   return get('/users');
 }
 
-export function getSingleUser(userId) {
+export function getUserDetails(userId) {
   return get(`/users/${userId}`);
 }
