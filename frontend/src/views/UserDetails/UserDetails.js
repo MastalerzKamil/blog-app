@@ -4,12 +4,14 @@ import {
   CircularProgress
 } from '@material-ui/core';
 import { PropTypes } from 'prop-types';
-import { UserHeader } from './components';
+import { UserHeader, PostsList } from './components';
 
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     margin: '30px',
   },
   loadingIcon: {
@@ -39,6 +41,7 @@ const UserDetails = (props) => {
   return (
     <div className={classes.root}>
       <UserHeader username={userDetails.info.name} />
+      <PostsList posts={userPosts.posts} />
     </div>
   )
 }

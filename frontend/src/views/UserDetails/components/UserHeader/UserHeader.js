@@ -13,6 +13,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'space-between',
     marginBottom: theme.spacing(8),
+    width: '100%',
   }
 }));
 

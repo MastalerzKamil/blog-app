@@ -1,4 +1,5 @@
 import React from 'react';
+import { PropTypes } from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Grid,
@@ -14,14 +15,17 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1
   },
   paper: {
+    display: 'flex',
+    justifyContent: 'space-between',
     padding: theme.spacing(2),
-    margin: 'auto',
-    maxWidth: 500
+    margin: theme.spacing(2),
+    width: '80vw'
   },
 }));
 
-const SinglePost = () => {
+const SinglePost = (props) => {
   const classes = useStyles();
+  const { title } = props;
 
   return (
     <div className={classes.root}>
@@ -37,7 +41,7 @@ const SinglePost = () => {
             <Grid item xs container direction='column' spacing={2}>
               <Grid item xs>
                 <Typography gutterBottom variant='subtitle1'>
-                  Standard license
+                  {title}
                 </Typography>
               </Grid>
               <Grid item />
@@ -53,6 +57,14 @@ const SinglePost = () => {
       </Paper>
     </div>
   )
+}
+
+SinglePost.defaultProps = {
+  title: ''
+};
+
+SinglePost.propTypes = {
+  title: PropTypes.string,
 }
 
 export default SinglePost;
