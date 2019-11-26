@@ -19,7 +19,7 @@ const UserDetails = (props) => {
 
   useEffect(() => {
     actions.fetchUserDetails(userId)
-  },[userDetails])
+  },[])
 
   if(userDetails.loading) {
     return (
@@ -29,7 +29,7 @@ const UserDetails = (props) => {
 
   return (
     <div className={classes.root}>
-
+      hello user
     </div>
   )
 }

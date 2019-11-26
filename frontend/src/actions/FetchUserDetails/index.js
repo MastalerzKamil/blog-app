@@ -12,7 +12,7 @@ export function fetchUserDetails(userId) {
 
 export function setUserDetails(userDetailsData) {
   return {
-    type: types.FETCH_USER_DETAILS,
+    type: types.SET_USER_DETAILS,
     payload: userDetailsData
   }
 }

@@ -8,7 +8,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  userDetailsActions: bindActionCreators(UserDetailsActions, dispatch),
+  actions: bindActionCreators(UserDetailsActions, dispatch),
 });
 
 export default connect(
