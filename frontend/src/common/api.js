@@ -7,3 +7,7 @@ export function getUsers() {
 export function getUserDetails(userId) {
   return get(`/users/${userId}`);
 }
+
+export function getPostsByUsersId(userId) {
+  return get(`/posts?userId=${userId}`);
+}

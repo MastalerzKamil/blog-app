@@ -14,14 +14,15 @@ const useStyles = makeStyles(theme => ({
 
 const UserDetails = (props) => {
   const classes = useStyles();
-  const { match, userDetails, actions } = props;
+  const { match, userDetails, userPosts, actions } = props;
   const { userId } = match.params;
 
   useEffect(() => {
-    actions.fetchUserDetails(userId)
-  },[])
+    actions.fetchUserDetails(userId);
+    actions.fetchUserPosts(userId);
+  },[]);
 
-  if(userDetails.loading) {
+  if(userDetails.loading && userPosts.loading) {
     return (
       <CircularProgress />
     )
