@@ -1,6 +1,6 @@
 import * as types from 'constants/postDetailsActions';
 
-const initialState={
+export const initialState={
   info: {},
   comments: [],
   loading: true,

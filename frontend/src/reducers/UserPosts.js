@@ -1,6 +1,6 @@
 import * as types from 'constants/userPostsActions';
 
-const initialState = {
+export const initialState = {
   posts: [],
   loading: true,
 }
