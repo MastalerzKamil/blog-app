@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { PropTypes } from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
+import { SingleComment } from '..';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -12,21 +13,17 @@ const useStyles = makeStyles(theme => ({
 
 const CommentsGrid = (props) => {
   const classes = useStyles();
-  const { match, shouldDisplay, actions } = props;
-  const { fetchCommentsForPost } = actions;
-  const { postId } = match.params;
-
-  useEffect(() => {
-    fetchCommentsForPost(postId)
-  },[fetchCommentsForPost, postId]);
-
-  console.log(props);
-
-  return (
-    <div className={classes.root}>
-      Hello comments
-    </div>
-  )
+  const { shouldDisplay, comments } = props;
+  if (shouldDisplay) {
+    return (
+      <div className={classes.root}>
+        {comments.map((comment, index) => {
+          return <SingleComment key={index} comment={comment} />
+        })}
+      </div>
+    )
+  }
+  return null;
 };
 
 CommentsGrid.defaultProps = {
@@ -34,12 +31,8 @@ CommentsGrid.defaultProps = {
 }
 
 CommentsGrid.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      postId: PropTypes.node,
-    }).isRequired,
-  }).isRequired,
   shouldDisplay: PropTypes.bool.isRequired,
+  comments: PropTypes.array.isRequired,
 }
 
 export default CommentsGrid;

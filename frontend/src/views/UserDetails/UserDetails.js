@@ -32,7 +32,7 @@ const UserDetails = (props) => {
 
   if(userDetails.loading && userPosts.loading) {
     return (
-      <CircularProgress className={classes.loadingIcon}/>
+      <CircularProgress size={100} className={classes.loadingIcon}/>
     )
   }
 

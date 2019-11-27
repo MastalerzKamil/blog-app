@@ -37,15 +37,13 @@ const PostDetails = (props) => {
     fetchPostDetails(postId);
     fetchUserDetails(userId);
     fetchCommentsForPost(postId)
-  },[fetchPostDetails, fetchUserDetails, fetchCommentsForPost, postId]);
+  },[fetchPostDetails, fetchUserDetails, fetchCommentsForPost, postId, userId]);
 
   if(postDetails.loading && userDetails.loading) {
     return (
-      <CircularProgress className={classes.loadingIcon}/>
+      <CircularProgress size={100} className={classes.loadingIcon}/>
     )
   }
-
-  console.log(props);
 
   return (
     <div className={classes.root}>
@@ -56,6 +54,7 @@ const PostDetails = (props) => {
       <Typography className={classes.body} variant="body1" gutterBottom>
         {postDetails.info.body}
       </Typography>
+      <CommentsGrid comments={postDetails.comments} shouldDisplay={true}/>
     </div>
   );
 }
