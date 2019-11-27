@@ -9,6 +9,7 @@ import {
   Button
 } from '@material-ui/core';
 import * as api from 'common/api';
+import AddCommentForm from './AddCommentForm';
 
 const AddComment = (props) => {
   const { openedDialog, handleClose } = props;
@@ -25,6 +26,13 @@ const AddComment = (props) => {
     && formsData.body !== ''
     && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(formsData.email)
   }
+
+  const handleChange = name => event => {
+    setFormsData({
+      ...formsData,
+      [name]: event.target.value,
+    });
+  };
 
   const handleAddComment = () => {
     if(validateForm()) {
@@ -48,6 +56,7 @@ const AddComment = (props) => {
         <DialogContentText>
           Add comment
         </DialogContentText>
+        <AddCommentForm handleChange={handleChange} formsData={formsData} />
       </DialogContent>
       <DialogActions>
         <Button

@@ -22,6 +22,8 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    width: '100%',
+    height: '100%'
   },
   title: {
     marginTop: theme.spacing(5),
@@ -59,6 +61,15 @@ const PostDetails = (props) => {
     )
   }
 
+  const changeButtons = (!displayComments ?
+  <Button color='primary' onClick={()=>setDisplayComments(true)}>
+    Show comments
+  </Button> :
+  <Button color='primary' onClick={()=>setDisplayComments(false)}>
+    Hide comments
+  </Button>);
+
+
   return (
     <div className={classes.root}>
       <PostHeader userId={userId} username={userDetails.info.name} />
@@ -68,10 +79,8 @@ const PostDetails = (props) => {
       <Typography className={classes.body} variant="body1" gutterBottom>
         {postDetails.info.body}
       </Typography>
-      <Grid content justify='space-between'>
-        <Button color='primary' onClick={()=>setDisplayComments(true)}>
-          Show Comments
-        </Button>
+      <Grid content alignItems='space-between'>
+        {changeButtons}
         <Button color='primary' onClick={()=>showDialog()}>
           Add Comment
         </Button>

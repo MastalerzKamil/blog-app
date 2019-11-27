@@ -9,6 +9,7 @@ import {
   Button
 } from '@material-ui/core';
 import * as api from 'common/api';
+import AddPostForm from './AddPostForm';
 
 const AddPost = (props) => {
   const { openedDialog, handleClose } = props;
@@ -30,6 +31,13 @@ const AddPost = (props) => {
     }
   }
 
+  const handleChange = name => event => {
+    setFormsData({
+      ...formsData,
+      [name]: event.target.value,
+    });
+  };
+
   if(addedPost) {
     return null;  //TODO ADD confirm modal
   }
@@ -45,6 +53,10 @@ const AddPost = (props) => {
         <DialogContentText>
           Add post
         </DialogContentText>
+        <AddPostForm
+          handleChange={handleChange}
+          formsData={formsData}
+        />
       </DialogContent>
       <DialogActions>
         <Button
