@@ -15,3 +15,7 @@ export function getPostsByUsersId(userId) {
 export function getPostById(postId) {
   return get(`/posts/${postId}`);
 }
+
+export function getCommentsById(postId) {
+  return get(`/comments?postId=${postId}`);
+}

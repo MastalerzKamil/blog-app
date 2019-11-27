@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { PropTypes } from 'prop-types';
 import { makeStyles } from "@material-ui/core/styles";
 import { CircularProgress, Typography } from '@material-ui/core';
-import { PostHeader } from './components';
+import { PostHeader, CommentsGrid } from './components';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -30,19 +30,22 @@ const useStyles = makeStyles(theme => ({
 const PostDetails = (props) => {
   const classes = useStyles();
   const { match, userDetails, postDetails, actions } = props;
-  const { fetchPostDetails, fetchUserDetails } = actions;
+  const { fetchPostDetails, fetchUserDetails, fetchCommentsForPost } = actions;
   const { postId, userId } = match.params;
 
   useEffect(() => {
-    fetchPostDetails(postId)
-    fetchUserDetails(userId)
-  },[fetchPostDetails, fetchUserDetails, postId]);
+    fetchPostDetails(postId);
+    fetchUserDetails(userId);
+    fetchCommentsForPost(postId)
+  },[fetchPostDetails, fetchUserDetails, fetchCommentsForPost, postId]);
 
   if(postDetails.loading && userDetails.loading) {
     return (
       <CircularProgress className={classes.loadingIcon}/>
     )
   }
+
+  console.log(props);
 
   return (
     <div className={classes.root}>

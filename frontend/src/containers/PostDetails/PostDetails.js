@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as UserDetailsActions from 'actions/FetchUserDetails';
 import * as PostDetailsActions from 'actions/FetchPostDetails';
+import * as FetchCommentsForPostActions from 'actions/FetchCommentsForPost';
 import { PostDetails } from 'views';
 
 const mapStateToProps = (state) => ({
@@ -12,7 +13,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators({
     ...UserDetailsActions,
-    ...PostDetailsActions
+    ...PostDetailsActions,
+    ...FetchCommentsForPostActions
   }, dispatch),
 });
 
