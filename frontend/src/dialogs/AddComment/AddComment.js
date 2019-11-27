@@ -6,10 +6,11 @@ import {
   DialogContent,
   DialogContentText,
   DialogActions,
-  Button
+  Button,
+  Typography
 } from '@material-ui/core';
-import * as api from 'common/api';
 import AddCommentForm from './AddCommentForm';
+import { ConfirmDialog } from '..';
 
 const AddComment = (props) => {
   const { openedDialog, handleClose } = props;
@@ -22,10 +23,12 @@ const AddComment = (props) => {
   })
 
   const validateForm = () => {
-    return formsData.name !== ''
-    && formsData.body !== ''
-    && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(formsData.email)
-  }
+    return (
+      formsData.name !== '' &&
+      formsData.body !== '' &&
+      formsData.email.indexOf('@') !== -1
+    );
+  };
 
   const handleChange = name => event => {
     setFormsData({
@@ -34,15 +37,29 @@ const AddComment = (props) => {
     });
   };
 
+  const handleCloseConfirmDialog = () => {
+    setAddedComment(false);
+  };
+
   const handleAddComment = () => {
-    if(validateForm()) {
-      // TODO send comment
+    const isValid = validateForm();
+    if(isValid) {
       setAddedComment(true);
+      handleClose();
     }
   }
 
   if(addedComment) {
-    return null;  //TODO ADD confirm modal
+    return (
+      <ConfirmDialog
+        handleClose={handleCloseConfirmDialog}
+        openedDialog={addedComment}
+      >
+        <Typography variant="h3" gutterBottom>
+          Comment has been added
+        </Typography>
+      </ConfirmDialog>
+    )
   }
 
   return (

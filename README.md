@@ -5,6 +5,7 @@
 
 # About solution
 
+Frontend has been deployed using Netlify. Check it out [here](https://recruitment-blog-app.netlify.com)
 Solution hasn't been done because there was't time enough. However here are done system elements:
 - Implemented prototypes
 - Calling to API from example
@@ -12,6 +13,7 @@ Solution hasn't been done because there was't time enough. However here are done
 - Configure eslint
 - Use React-Redux
 - Use Redux-Thunk
+- Validating forms in frontend
 - Prepare Dockerfiles and docker-compose for future development (some integration tests, CI/CD etc.)
 - Prepare backend app. You can call test endpoint but there wasn't business logic and connection with database
 - Preapre MySQL Schema

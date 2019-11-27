@@ -14,9 +14,9 @@ const AddCommentForm = (props) => {
         id="comment-title"
         label="Title"
         margin="dense"
-        onChange={handleChange('title')}
+        onChange={handleChange('name')}
         type="text"
-        value={formsData.title}
+        value={formsData.name}
       />
       <TextField
         autoFocus
