@@ -1,6 +1,6 @@
 import * as actionTypes from 'constants/dialogActions';
 
-const initialState = { openedDialog: false };
+export const initialState = { openedDialog: false };
 
 export default function(state=initialState, action) {
   switch(action.type) {

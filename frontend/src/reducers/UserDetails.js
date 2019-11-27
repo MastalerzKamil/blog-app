@@ -1,6 +1,6 @@
 import * as types from 'constants/userDetailsActions';
 
-const initialState={
+export const initialState={
   info: {},
   loading: true,
 };

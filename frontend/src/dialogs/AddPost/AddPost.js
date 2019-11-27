@@ -6,10 +6,12 @@ import {
   DialogContent,
   DialogContentText,
   DialogActions,
-  Button
+  Button,
+  Typography,
 } from '@material-ui/core';
 import * as api from 'common/api';
 import AddPostForm from './AddPostForm';
+import { ConfirmDialog } from '..';
 
 const AddPost = (props) => {
   const { openedDialog, handleClose } = props;
@@ -25,9 +27,11 @@ const AddPost = (props) => {
   }
 
   const handleAddPost = () => {
-    if(validateForm()) {
+    const isValid = validateForm();
+    if(isValid) {
       api.addPost(formsData);
       setAddedPost(true);
+      handleClose();
     }
   }
 
@@ -38,8 +42,18 @@ const AddPost = (props) => {
     });
   };
 
+  const handleCloseConfirmDialog = () => {
+    setAddedPost(false)
+  }
+
   if(addedPost) {
-    return null;  //TODO ADD confirm modal
+    return (
+      <ConfirmDialog handleClose={handleCloseConfirmDialog} openedDialog={addedPost}>
+        <Typography variant="h3" gutterBottom>
+          Post has been added
+        </Typography>
+      </ConfirmDialog>
+    );
   }
 
   return (
