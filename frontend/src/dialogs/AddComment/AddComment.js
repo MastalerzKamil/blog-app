@@ -10,27 +10,30 @@ import {
 } from '@material-ui/core';
 import * as api from 'common/api';
 
-const AddPost = (props) => {
+const AddComment = (props) => {
   const { openedDialog, handleClose } = props;
 
-  const [addedPost, setAddedPost] = React.useState(false);
+  const [addedComment, setAddedComment] = React.useState(false);
   const [formsData, setFormsData] = React.useState({
-    title: '',
+    name: '',
+    email: '',
     body: '',
   })
 
   const validateForm = () => {
-    return formsData.title !== '' && formsData.body !== '';
+    return formsData.name !== ''
+    && formsData.body !== ''
+    && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(formsData.email)
   }
 
-  const handleAddPost = () => {
+  const handleAddComment = () => {
     if(validateForm()) {
-      api.addPost(formsData);
-      setAddedPost(true);
+      // TODO send comment
+      setAddedComment(true);
     }
   }
 
-  if(addedPost) {
+  if(addedComment) {
     return null;  //TODO ADD confirm modal
   }
 
@@ -40,22 +43,22 @@ const AddPost = (props) => {
       onClose={() => handleClose()}
       open={openedDialog}
     >
-      <DialogTitle id="dialog-add-post">Add post</DialogTitle>
+      <DialogTitle id="comment-add-post">Add comment</DialogTitle>
       <DialogContent>
         <DialogContentText>
-          Add post
+          Add comment
         </DialogContentText>
       </DialogContent>
       <DialogActions>
         <Button
-          color="primary"
+          color='primary'
           onClick={() => handleClose()}
         >
           Cancel
         </Button>
         <Button
-          color="primary"
-          onClick={() => handleAddPost()}
+          color='primary'
+          onClick={() => handleAddComment()}
         >
           Save
         </Button>
@@ -64,13 +67,13 @@ const AddPost = (props) => {
   );
 };
 
-AddPost.defaultProps = {
+AddComment.defaultProps = {
   openedDialog: false
 }
 
-AddPost.propTypes = {
+AddComment.propTypes = {
   openedDialog: PropTypes.bool,
   handleClose: PropTypes.func.isRequired,
 }
 
-export default AddPost;
+export default AddComment;

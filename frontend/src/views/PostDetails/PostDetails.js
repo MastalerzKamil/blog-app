@@ -1,8 +1,14 @@
 import React, { useEffect } from 'react';
 import { PropTypes } from 'prop-types';
 import { makeStyles } from "@material-ui/core/styles";
-import { CircularProgress, Typography } from '@material-ui/core';
+import {
+  CircularProgress,
+  Typography,
+  Grid,
+  Button
+} from '@material-ui/core';
 import { PostHeader, CommentsGrid } from './components';
+import { AddComment } from 'dialogs';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -29,9 +35,17 @@ const useStyles = makeStyles(theme => ({
 
 const PostDetails = (props) => {
   const classes = useStyles();
-  const { match, userDetails, postDetails, actions } = props;
-  const { fetchPostDetails, fetchUserDetails, fetchCommentsForPost } = actions;
+  const { match, userDetails, dialog, postDetails, actions } = props;
+  const {
+    fetchPostDetails,
+    fetchUserDetails,
+    fetchCommentsForPost,
+    showDialog,
+    hideDialog,
+  } = actions;
   const { postId, userId } = match.params;
+
+  const [displayComments, setDisplayComments] = React.useState(false);
 
   useEffect(() => {
     fetchPostDetails(postId);
@@ -54,7 +68,19 @@ const PostDetails = (props) => {
       <Typography className={classes.body} variant="body1" gutterBottom>
         {postDetails.info.body}
       </Typography>
-      <CommentsGrid comments={postDetails.comments} shouldDisplay={true}/>
+      <Grid content justify='space-between'>
+        <Button color='primary' onClick={()=>setDisplayComments(true)}>
+          Show Comments
+        </Button>
+        <Button color='primary' onClick={()=>showDialog()}>
+          Add Comment
+        </Button>
+      </Grid>
+      <CommentsGrid
+        comments={postDetails.comments}
+        shouldDisplay={displayComments}
+      />
+      <AddComment openedDialog={dialog.openedDialog} handleClose={hideDialog} />
     </div>
   );
 }
@@ -69,6 +95,7 @@ PostDetails.propTypes = {
   actions: PropTypes.object.isRequired,
   userDetails: PropTypes.object.isRequired,
   postDetails: PropTypes.object.isRequired,
+  dialog: PropTypes.object.isRequired,
 }
 
 export default PostDetails;
