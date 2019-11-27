@@ -1,12 +1,14 @@
 import React from 'react';
-import Routes from './Routes'
+import AppRouter from './AppRouter';
+import { Provider } from 'react-redux';
+import store from './store';
 
-class App extends React {
-  render () {
-    return (
-      <Routes/>
-    );
-  }
+const App = () => {
+  return (
+    <Provider store={store}>
+      <AppRouter/>
+    </Provider>
+  );
 }
 
 export default App;
