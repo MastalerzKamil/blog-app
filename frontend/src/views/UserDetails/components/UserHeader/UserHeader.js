@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
 
 const UserHeader = (props) => {
   const classes = useStyles();
-  const { username } = props;
+  const { username, handleOpenDialog } = props;
 
   return (
     <div className={classes.root}>
@@ -34,7 +34,7 @@ const UserHeader = (props) => {
       <Typography variant='h4' gutterBottom>
         {username}
       </Typography>
-      <IconButton>
+      <IconButton onClick={() => handleOpenDialog()}>
         <AddCircleIcon />
       </IconButton>
     </div>
@@ -47,6 +47,7 @@ UserHeader.defaultProps = {
 
 UserHeader.propTypes = {
   username: PropTypes.string,
+  handleOpenDialog: PropTypes.func.isRequired,
 }
 
 export default UserHeader;

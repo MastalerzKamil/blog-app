@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { CircularProgress } from '@material-ui/core';
 import { PropTypes } from 'prop-types';
 import { UserHeader, PostsList } from './components';
+import { AddPost } from 'dialogs';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -21,8 +22,8 @@ const useStyles = makeStyles(theme => ({
 
 const UserDetails = (props) => {
   const classes = useStyles();
-  const { match, userDetails, userPosts, actions } = props;
-  const { fetchUserDetails, fetchUserPosts } = actions;
+  const { match, userDetails, userPosts, dialog, actions } = props;
+  const { fetchUserDetails, fetchUserPosts, showDialog, hideDialog } = actions;
   const { userId } = match.params;
 
   useEffect(() => {
@@ -38,8 +39,15 @@ const UserDetails = (props) => {
 
   return (
     <div className={classes.root}>
-      <UserHeader username={userDetails.info.name} />
+      <UserHeader
+        handleOpenDialog={showDialog}
+        username={userDetails.info.name}
+      />
       <PostsList posts={userPosts.posts} />
+      <AddPost
+        openedDialog={dialog.openedDialog}
+        handleClose={hideDialog}
+      />
     </div>
   );
 };

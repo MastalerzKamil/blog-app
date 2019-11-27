@@ -1,4 +1,4 @@
-import { get } from './requestMethods';
+import { get, post } from './requestMethods';
 
 export function getUsers() {
   return get('/users');
@@ -18,4 +18,8 @@ export function getPostById(postId) {
 
 export function getCommentsById(postId) {
   return get(`/comments?postId=${postId}`);
+}
+
+export function addPost(body) {
+  return post('/posts', body)
 }
