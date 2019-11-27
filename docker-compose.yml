@@ -1,0 +1,62 @@
+version: "3"
+
+services:
+  client:
+    build: ./frontend
+    restart: always
+    ports:
+      - "3000:3000"
+    volumes:
+      - client:/client
+      - client:/client/node_modules
+    links:
+      - api
+    networks:
+      - webappnetwork
+    depends_on:
+      - api
+  api:
+    build: ./backend
+    restart: always
+    ports:
+      - "4000:4000"
+    volumes:
+      - api:/api
+      - api:/api/node_modules
+    networks:
+      - webappnetwork
+    depends_on:
+      - db
+  db:
+    build: ./database
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: blogApp
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+    networks:
+      - webappnetwork
+  phpmyadmin:
+    depends_on:
+      - db
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - '80:80'
+    links:
+      - db
+    environment:
+      PMA_HOSTS: db
+    networks:
+      - webappnetwork
+
+networks:
+  webappnetwork:
+    driver: bridge
+volumes:
+  db_data:
+  client:
+  api:
